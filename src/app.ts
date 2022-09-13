@@ -8,5 +8,6 @@ const productController = new ProductController();
 app.use(express.json());
 
 app.post('/products', productController.postProduct);
+app.get('/products', productController.getProducts);
 
 export default app;

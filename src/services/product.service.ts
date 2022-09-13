@@ -13,4 +13,9 @@ export default class ProductService {
     const result = await this.model.postProduct(name, amount);
     return result;
   }
+
+  public async getProducts(): Promise<IProduct> {
+    const result = await this.model.getProducts();
+    return result;
+  }
 }

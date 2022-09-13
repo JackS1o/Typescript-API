@@ -9,4 +9,9 @@ export default class ProductController {
     const result = await this.productService.postProduct(name, amount);
     return res.status(201).json(result);
   };
+
+  public getProducts = async (req: Request, res: Response) => {
+    const result = await this.productService.getProducts();
+    return res.status(200).json(result);
+  };
 }
