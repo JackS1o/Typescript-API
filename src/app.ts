@@ -41,7 +41,7 @@ app.post(
 
 app.get('/orders', orderController.getOrders);
 
-app.put(
+app.post(
   '/orders', 
   middRegister.verifyToken,
   middRegister.verifyProducts,
