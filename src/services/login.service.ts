@@ -9,7 +9,7 @@ export default class LoginService {
     this.model = new LoginModel(connection);
   }
 
-  public async userLogin(username: string, password: string): Promise<ILogin | false> {
+  public async userLogin(username: string, password: string): Promise<ILogin[]> {
     const result = await this.model.userLogin(username, password);
     return result;
   }

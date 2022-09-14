@@ -6,6 +6,7 @@ import LoginController from './controllers/login.controller';
 import MiddLogin from './middleware/loginVerify';
 import MiddProduct from './middleware/productsVerify';
 import MiddUser from './middleware/userVerify';
+import MiddRegister from './middleware/registerProduct';
 
 const app = express();
 
@@ -16,6 +17,7 @@ const loginController = new LoginController();
 const middLogin = new MiddLogin();
 const middProduct = new MiddProduct();
 const middUser = new MiddUser();
+const middRegister = new MiddRegister();
 
 app.use(express.json());
 
@@ -40,5 +42,12 @@ app.post(
 app.get('/orders', orderController.getOrders);
 
 app.post('/login', middLogin.userLogin, loginController.userLogin);
+
+app.put(
+  '/orders', 
+  middRegister.verifyToken,
+  middRegister.verifyProducts,
+  orderController.createOrder,
+);
 
 export default app;

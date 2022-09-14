@@ -12,9 +12,7 @@ export default class UserController {
       expiresIn: '20d',
     });
     
-    const result = await this.userService.createUser(body);
-
-    if (!result) return res.status(400).json('deu ruim'); 
+    await this.userService.createUser(body);
     return res.status(201).json({ token });
   };
 }
