@@ -1,9 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import ProductService from '../services/product.service';
 
 export default class MiddProduct {
-  constructor(private productService = new ProductService()) {}
-
   public productCheck = async (req: Request, res: Response, next: NextFunction) => {
     const { name } = req.body;
     if (!name) return res.status(400).json({ message: '"name" is required' });

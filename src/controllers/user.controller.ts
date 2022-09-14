@@ -7,6 +7,7 @@ export default class UserController {
 
   public createUser = async (req: Request, res: Response) => {
     const { body } = req;
+    
     const token = jwt.sign({ body }, 'secreta', {
       expiresIn: '20d',
     });

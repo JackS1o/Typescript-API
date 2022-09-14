@@ -5,6 +5,7 @@ import UserController from './controllers/user.controller';
 import LoginController from './controllers/login.controller';
 import MiddLogin from './middleware/loginVerify';
 import MiddProduct from './middleware/productsVerify';
+import MiddUser from './middleware/userVerify';
 
 const app = express();
 
@@ -14,6 +15,7 @@ const orderController = new OrderController();
 const loginController = new LoginController();
 const middLogin = new MiddLogin();
 const middProduct = new MiddProduct();
+const middUser = new MiddUser();
 
 app.use(express.json());
 
@@ -25,7 +27,15 @@ app.post(
 );
 app.get('/products', productController.getProducts);
 
-app.post('/users', userController.createUser);
+app.post(
+  '/users', 
+  middUser.userNameCheck, 
+  middUser.classeCheck,
+  middUser.classeCheck,
+  middUser.levelCheck,
+  middUser.passwordCheck,
+  userController.createUser,
+);
 
 app.get('/orders', orderController.getOrders);
 
