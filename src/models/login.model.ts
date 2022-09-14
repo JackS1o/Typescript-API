@@ -8,12 +8,11 @@ export default class LoginModel {
     this.connection = connection;
   }
 
-  public async userLogin(username: string): Promise<ILogin> {
+  public async userLogin(username: string, password: string): Promise<ILogin | false> {
     const [result] = await this.connection.execute(`
-    SELECT * FROM Trybesmith.Users WHERE username = ?;
-    `, [username]);
-    console.log(result);
-    
+    SELECT * FROM Trybesmith.Users WHERE username = ? AND password = ?;
+    `, [username, password]);
+    if ((result as any).length === 0) return false;
     return result as unknown as ILogin;
   }
-}  
+}
