@@ -30,6 +30,12 @@ app.post(
 app.get('/products', productController.getProducts);
 
 app.post(
+  '/orders', 
+  middRegister.verifyToken,
+  middRegister.verifyProducts,
+  orderController.createOrder,
+);
+app.post(
   '/users', 
   middUser.userNameCheck, 
   middUser.classeCheck,
@@ -43,11 +49,5 @@ app.get('/orders', orderController.getOrders);
 
 app.post('/login', middLogin.userLogin, loginController.userLogin);
 
-app.put(
-  '/orders', 
-  middRegister.verifyToken,
-  middRegister.verifyProducts,
-  orderController.createOrder,
-);
 
 export default app;
